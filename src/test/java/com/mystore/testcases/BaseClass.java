@@ -21,50 +21,45 @@ public class BaseClass {
 
 	String url = readConfig.getBaseUrl();
 	String browser = readConfig.getBrowser();
-	
-	
+
 	public static WebDriver driver;
 	public static Loggers Logger;
-	
+
 	@BeforeClass
-	public void setup() 
-	{
-	
-          switch(browser.toLowerCase())		
-          {
-          case "chrome":
-        	  WebDriverManager.chromedriver().setup();
-        	  driver = new ChromeDriver();
-        	  
-          case "msedge":
-        	  WebDriverManager.edgedriver().setup();
-        	  driver = new EdgeDriver();
-        	  break;
-        	  
-          case "firefox":
-        	  WebDriverManager.firefoxdriver().setup();
-        	  driver = new FirefoxDriver();
-        	  break;
-        	  
-          default :
-        	  driver = null;
-        	  break;
-        	  
-        	  
-          }
-          
-         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-         
-         // For logging
-        
-	}    
-	
-@AfterClass
- public void tearDown()
- {
- driver.close();
- driver.quit();
-	 
+	public void setup() {
+
+		switch (browser.toLowerCase()) {
+		case "chrome":
+			WebDriverManager.chromedriver().setup();
+			driver = new ChromeDriver();
+
+		case "msedge":
+			WebDriverManager.edgedriver().setup();
+			driver = new EdgeDriver();
+			break;
+
+		case "firefox":
+			WebDriverManager.firefoxdriver().setup();
+			driver = new FirefoxDriver();
+			break;
+
+		default:
+			driver = null;
+			break;
+
+		}
+
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+		// For logging
+
 	}
-	
+
+	@AfterClass
+	public void tearDown() {
+		driver.close();
+		driver.quit();
+
+	}
+
 }
